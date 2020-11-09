@@ -1,0 +1,59 @@
+<head>
+<meta charset="UTF-8">
+<title>several Hits</title>
+
+<link rel="stylesheet" href="general.css">
+<script src="cookies.js"></script>
+</head>
+<body>
+<form  action="/takeDammage" method="get" id="form1">
+		<label for="dammage">Dammage :</label>
+		<input type="number" id="dammage" name="dammage" readonly="readonly" value="0"></input>
+		 <br>
+		 
+		<label for="nbDammage">Dégats :</label>
+        <input type="number" id="nbDammage" name="dammages">
+        
+
+
+<a id="testButton"  class="button" onclick= "draw()"> Retirer </a>
+
+
+<div id="several Hits">
+<br>
+</div>
+    <div>
+   <button id="submitButton" type="submit" style="display:none disabled">Prendre les dégâts</button>
+    </div>
+    <p id="demo"></p>
+</form>
+  <p id="message"></p>
+  <a href="chooseCharacter.html" id = "lien"> </a>
+<script>
+function draw(){
+	
+	if(findValueCookie("dodge")>Math.random()){	
+	console.log("Esquivé : "+findValueCookie("dodge"));	
+	document.getElementById("demo").innerHTML ="Dégats esquivés "	;	
+		   
+	}else{
+	console.log("Touché");
+	document.getElementById("demo").innerHTML ="Touché "
+	
+   if((parseInt(document.getElementById("dammage").value)+parseInt(document.getElementById("nbDammage").value))<=findValueCookie("HP")){
+document.getElementById("dammage").value=(parseInt(document.getElementById("dammage").value)+parseInt(document.getElementById("nbDammage").value));
+		     }	    else {
+				document.getElementById("message").innerHTML ="Le personnage est KO ! HP : " + findValueCookie("HP") ;
+				document.getElementById("submitButton").style.visibility = 'hidden';
+				document.getElementById("submitButton").disabled = true;
+				document.getElementById("lien").innerHTML = "chooseCharacter.html" ;
+			}
+		     
+			
+		}
+
+	}
+</script>
+
+</body>
+</html>
